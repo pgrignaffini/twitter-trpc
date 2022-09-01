@@ -14,7 +14,7 @@ function Tweetbox() {
         onMutate: () => {
             ctx.cancelQuery(["post.posts"]);
 
-            let optimisticUpdate = ctx.getQueryData(["post.posts"]);
+            const optimisticUpdate = ctx.getQueryData(["post.posts"]);
             if (optimisticUpdate) {
                 ctx.setQueryData(["post.posts"], optimisticUpdate);
             }

@@ -27,7 +27,7 @@ function Tweet({ tweet }: Props) {
         onMutate: () => {
             ctx.cancelQuery(["comment.post-comments"]);
 
-            let optimisticUpdate = ctx.getQueryData(["comment.post-comments", { postId: tweet.id }]);
+            const optimisticUpdate = ctx.getQueryData(["comment.post-comments", { postId: tweet.id }]);
             if (optimisticUpdate) {
                 ctx.setQueryData(["comment.post-comments"], optimisticUpdate);
             }
