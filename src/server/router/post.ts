@@ -30,6 +30,9 @@ export const postRouter = createRouter()
     .query('posts', {
         resolve({ ctx }) {
             return ctx.prisma.post.findMany({
+                orderBy: {
+                    createdAt: 'desc',
+                },
                 include: {
                     user: true,
                 }

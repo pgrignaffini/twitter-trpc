@@ -2,6 +2,7 @@ import { CalendarIcon, EmojiHappyIcon, LocationMarkerIcon, PhotographIcon, Searc
 import { useState } from "react"
 import { useSession } from "next-auth/react"
 import { trpc } from "../utils/trpc"
+import toast from "react-hot-toast"
 
 function Tweetbox() {
 
@@ -25,11 +26,16 @@ function Tweetbox() {
 
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
+        const loading = toast.loading("Posting tweet...")
         postMessage.mutate({
             text: input,
         });
 
         setInput("");
+
+        toast.success("Tweet posted!", {
+            id: loading
+        })
     }
 
     return (
